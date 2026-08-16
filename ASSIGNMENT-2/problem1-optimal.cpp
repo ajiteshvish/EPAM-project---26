@@ -3,12 +3,9 @@ using namespace std;
 
 // Optimal Approach
 // Traverse the tree only once. While moving from a parent to a child,
-// carry the XOR value of the path computed so far.
-//
-// NOTE: The assignment's written condition conflicts with its sample outputs.
-// This solution follows the PROVIDED SAMPLES:
-// - XOR starts after the root, so Server 1 has path XOR = 0.
-// - A server is trusted when path XOR > K.
+// carry the XOR of ALL security keys on the root-to-current-node path.
+// The root's own key is included, as required by the problem statement.
+// A server is trusted when path XOR >= K.
 //
 // Time Complexity: O(N)
 // Space Complexity: O(N)
@@ -41,7 +38,7 @@ int main() {
     };
 
     stack<State> st;
-    st.push({1, 0, 0});
+    st.push({1, 0, key[1]});
 
     int trustedServers = 0;
 
@@ -49,7 +46,7 @@ int main() {
         State cur = st.top();
         st.pop();
 
-        if (cur.pathXor > K) {
+        if (cur.pathXor >= K) {
             ++trustedServers;
         }
 
