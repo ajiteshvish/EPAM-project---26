@@ -3,12 +3,8 @@ using namespace std;
 
 // Brute Force Approach
 // For every server, independently search the path from Server 1 to that server
-// and recompute the XOR value.
-//
-// NOTE: The assignment's written condition conflicts with its sample outputs.
-// This solution follows the PROVIDED SAMPLES:
-// - XOR starts after the root, so Server 1 has path XOR = 0.
-// - A server is trusted when path XOR > K.
+// and recompute the XOR of ALL security keys on that path, including the root.
+// A server is trusted when path XOR >= K.
 //
 // Time Complexity: O(N^2) in the worst case
 // Space Complexity: O(N)
@@ -42,7 +38,7 @@ int main() {
         };
 
         stack<State> st;
-        st.push({1, 0, 0});
+        st.push({1, 0, key[1]});
 
         while (!st.empty()) {
             State cur = st.top();
@@ -58,14 +54,14 @@ int main() {
             }
         }
 
-        return -1; // Tree is connected, so this should never happen.
+        return -1; // Input is a connected tree, so this should never happen.
     };
 
     int trustedServers = 0;
 
     for (int server = 1; server <= N; ++server) {
         int pathXor = getPathXor(server);
-        if (pathXor > K) {
+        if (pathXor >= K) {
             ++trustedServers;
         }
     }
