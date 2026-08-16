@@ -7,7 +7,7 @@ This folder contains C++ solutions for both problems. For each problem, a brute-
 ### Brute Force
 File: `problem1-bruteforce.cpp`
 
-For every server, independently find the path from Server 1 to that server and recompute the path XOR.
+For every server, independently find the path from Server 1 to that server and recompute the XOR of all keys on the path, including the root key. Count the server when the path XOR is greater than or equal to `K`.
 
 - Time Complexity: `O(N^2)` worst case
 - Space Complexity: `O(N)`
@@ -15,12 +15,12 @@ For every server, independently find the path from Server 1 to that server and r
 ### Optimal
 File: `problem1-optimal.cpp`
 
-Traverse the tree once using DFS while carrying the path XOR from the root toward each node.
+Traverse the tree once using DFS while carrying the XOR of all keys from the root to the current node. The root key is included and a server is counted when path XOR `>= K`.
 
 - Time Complexity: `O(N)`
 - Space Complexity: `O(N)`
 
-> Note: The wording in the supplied problem statement conflicts with the provided sample outputs. The implementations follow the expected outputs given in the assignment.
+> Note: The supplied sample outputs for this problem conflict with the written definition. The implementations now follow the written problem statement exactly: root key included and condition `>= K`.
 
 Compile and run:
 
