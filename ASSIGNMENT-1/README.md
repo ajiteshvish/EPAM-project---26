@@ -15,7 +15,7 @@ NexaBank is a feature-complete, highly interactive digital retail banking portal
 
 | Field | Value |
 | :--- | :--- |
-| **Login URL** | `http://localhost:3000/login](https://nexabankvercelapp.vercel.app` |
+| **Login URL** | `https://nexabankvercelapp.vercel.app` |
 | **Email** | `alex@nexabank.com` |
 | **Password** | `nexa1234` |
 
