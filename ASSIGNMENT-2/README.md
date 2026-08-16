@@ -1,37 +1,61 @@
 # ASSIGNMENT-2 — Tree & Graph
 
-This folder contains JavaScript solutions for the two medium-level Tree and Graph problems from the EPAM assignment sheet.
+This folder contains C++ solutions for both problems. For each problem, a brute-force approach is provided first, followed by an optimal approach suitable for the given constraints.
 
 ## Problem 1: Tree of Trusted Servers
 
-File: `problem1-tree-of-trusted-servers.js`
+### Brute Force
+File: `problem1-bruteforce.cpp`
 
-Approach: iterative DFS over the tree while maintaining the XOR value along the root-to-node path.
+For every server, independently find the path from Server 1 to that server and recompute the path XOR.
 
-Time complexity: `O(N)`
+- Time Complexity: `O(N^2)` worst case
+- Space Complexity: `O(N)`
 
-Space complexity: `O(N)`
+### Optimal
+File: `problem1-optimal.cpp`
 
-> Note: The wording in the supplied document says to include the root key and use `>= K`, but both provided expected outputs match a path XOR that starts after the root and uses `> K`. The solution follows the supplied expected outputs.
+Traverse the tree once using DFS while carrying the path XOR from the root toward each node.
 
-Run:
+- Time Complexity: `O(N)`
+- Space Complexity: `O(N)`
+
+> Note: The wording in the supplied problem statement conflicts with the provided sample outputs. The implementations follow the expected outputs given in the assignment.
+
+Compile and run:
 
 ```bash
-node problem1-tree-of-trusted-servers.js < input.txt
+g++ -std=c++17 problem1-bruteforce.cpp -o brute
+./brute < input.txt
+
+g++ -std=c++17 problem1-optimal.cpp -o optimal
+./optimal < input.txt
 ```
 
 ## Problem 2: Emergency Route Validation
 
-File: `problem2-emergency-route-validation.js`
+### Brute Force
+File: `problem2-bruteforce.cpp`
 
-Approach: BFS from City 1 to calculate shortest-path distance in an unweighted graph. Expansion stops once distance `D` is reached.
+Run a separate BFS from City 1 for every target city and check whether its shortest distance is at most `D`.
 
-Time complexity: `O(N + M)`
+- Time Complexity: `O(N * (N + M))`
+- Space Complexity: `O(N + M)`
 
-Space complexity: `O(N + M)`
+### Optimal
+File: `problem2-optimal.cpp`
 
-Run:
+Run BFS only once from City 1. Since the graph is unweighted, one BFS gives the shortest distance to every city.
+
+- Time Complexity: `O(N + M)`
+- Space Complexity: `O(N + M)`
+
+Compile and run:
 
 ```bash
-node problem2-emergency-route-validation.js < input.txt
+g++ -std=c++17 problem2-bruteforce.cpp -o brute
+./brute < input.txt
+
+g++ -std=c++17 problem2-optimal.cpp -o optimal
+./optimal < input.txt
 ```
