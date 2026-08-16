@@ -1,0 +1,1 @@
+"use client";import{useContext}from"react";import{BankingContext}from"./BankingProvider";export function useBanking(){const c=useContext(BankingContext);if(!c)throw new Error("useBanking must be used within a BankingProvider");return c}
